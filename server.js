@@ -1,6 +1,3 @@
-// if (process.env.NODE_ENV !== 'production') {
-//   require('dotenv').config()
-// }
 
 const express = require('express')
 const app = express()
@@ -8,21 +5,22 @@ const bcrypt = require('bcrypt')
 const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
+const methodOverride = require('method-override')
 
 const initializePassport = require('./passport-config')
 initializePassport(
   passport,
   email => users.find(user => user.email === email),
   id => users.find(user => user.id === id)
-  )
+)
 
-  const users = []
+const users = []
 
-  app.set('view-engine', 'ejs')
-  app.use(express.urlencoded({ extended: false }))
-  app.use(flash())
+app.set('view-engine', 'ejs')
+app.use(express.urlencoded({ extended: false }))
+app.use(flash())
 app.use(session({
-  secret: "anurag",
+  secret: "Anurag",
   resave: false,
   saveUninitialized: false
 }))
@@ -72,7 +70,7 @@ function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next()
   }
-  
+
   res.redirect('/login')
 }
 
@@ -83,6 +81,4 @@ function checkNotAuthenticated(req, res, next) {
   next()
 }
 
-app.listen(5000,()=>{
-  console.log("listening on port 5000")
-})
+app.listen(3000)
