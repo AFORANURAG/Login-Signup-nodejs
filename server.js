@@ -1,6 +1,6 @@
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   require('dotenv').config()
+// }
 
 const express = require('express')
 const app = express()
@@ -23,7 +23,7 @@ app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(flash())
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: "anurag",
   resave: false,
   saveUninitialized: false
 }))
@@ -84,4 +84,4 @@ function checkNotAuthenticated(req, res, next) {
   next()
 }
 
-app.listen(3000)
+app.listen(5000)
